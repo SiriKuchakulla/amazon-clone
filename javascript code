@@ -1,0 +1,80 @@
+let SlideBtnLeft = document.getElementById("slide_btn_left")
+let SlideBtnRight = document.getElementById("slide_btn_right")
+let imgItem = document.querySelectorAll(".image-item")
+
+
+let startSlider = 0
+let endSlider = (imgItem.length-1) *100
+SlideBtnLeft.addEventListener("click",handelLeftBtn)
+
+function handelLeftBtn(){
+    if(startSlider < 0){
+        startSlider += 100;
+    }
+    else{
+        startSlider = -700;
+    }
+
+    imgItem.forEach(element =>{
+        element.style.transform = ` translateX(${startSlider}%)`;
+    })
+}
+
+SlideBtnRight.addEventListener("click",handelRightBtn)
+
+function handelRightBtn(){
+    if(startSlider >= -endSlider+100){
+        startSlider -= 100;
+    }
+    else{
+        startSlider = 0;
+    }
+
+    imgItem.forEach(element =>{
+        element.style.transform = ` translateX(${startSlider}%)`;
+    })    
+}
+
+
+function renderAuto(){
+    handelRightBtn()
+}
+setInterval(renderAuto,6000)
+
+
+const sidebarNavigationE1 = document.getElementById("slidebar-container-navigation-id")
+const sidebarOpenNavigationE1 = document.getElementById("open-nav-sidebar")
+const sidebarCloseNavigationE1 = document.getElementById("sidebar-navigation-close")
+
+sidebarOpenNavigationE1.addEventListener("click",()=>{
+    sidebarNavigationE1.classList.toggle("slidebar-show")
+})
+sidebarCloseNavigationE1.addEventListener("click",()=>{
+    sidebarNavigationE1.classList.toggle("slidebar-show")
+})
+
+
+let mybutton = document.getElementById("myBtn");
+
+mybutton.addEventListener("click",topFunction);
+
+function topFunction() {
+    document.documentElement.scrollTop = 0;
+}
+
+
+
+var headerElement = document.getElementById('header-element');
+var menuBar = document.getElementById('menu-bar');
+var timer;
+
+headerElement.addEventListener('mouseover', function() {
+  timer = setTimeout(function() {
+    menuBar.style.display = 'block';
+  }, 500);
+});
+
+headerElement.addEventListener('mouseout', function() {
+  clearTimeout(timer);
+  menuBar.style.display = 'none';
+});
